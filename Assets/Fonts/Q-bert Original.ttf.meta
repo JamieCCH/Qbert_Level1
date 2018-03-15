@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: ef9fd9952c03c46c4b75efe9df14987b
+timeCreated: 1517521238
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Q-bert Original
+  fontNames:
+  - Q-bert Original
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
