@@ -53,6 +53,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BringToFront.cs" />
      <Compile Include="Assets\Scripts\CubeFunc.cs" />
+     <Compile Include="Assets\Scripts\CubeLogic.cs" />
      <Compile Include="Assets\Scripts\EscPanelScript.cs" />
      <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\Scripts\QBertScript.cs" />

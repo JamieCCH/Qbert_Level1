@@ -47,6 +47,9 @@ TagManager:
   - name: Cube
     uniqueID: 3302511155
     locked: 0
+  - name: Enemies
+    uniqueID: 1330918029
+    locked: 0
   - name: Player
     uniqueID: 847363391
     locked: 0

@@ -9,18 +9,21 @@ public class CubeFunc : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-//		aud = this.GetComponent<AudioSource>();
+		aud = this.GetComponent<AudioSource>();
 		anim = GetComponent<Animator>();
 		anim.SetBool ("isHit", false);
-//		anim.speed = 0;
+		anim.speed = 0;
 	}
 	
 	void OnCollisionEnter2D (Collision2D other) 
 	{
 		if (other.gameObject.tag == "Player") {
-//			aud.Play ();
-//			anim.speed = 1;
+//			Debug.Log ("OnCollisionEn ter2D");
+			aud.Play ();
+			anim.speed = 1;
 			anim.SetBool ("isHit", true);
 		}
 	}
+		
+
 }
