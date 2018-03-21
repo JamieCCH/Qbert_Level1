@@ -12,6 +12,10 @@ public class EscPanelScript : MonoBehaviour {
 	public Button cancelBt;
 	public GameObject EscPanelObj;
 
+	void Start () {
+
+	}
+
 	void Update () 
 	{
 		if(Input.GetKeyUp(KeyCode.Escape))
@@ -34,6 +38,11 @@ public class EscPanelScript : MonoBehaviour {
 
 		cancelBt.onClick.RemoveAllListeners ();
 		cancelBt.onClick.AddListener (closePanel);
+
+		AudioSource buttonSound = GetComponent<AudioSource>();
+		exitBt.onClick.AddListener(delegate() { buttonSound.Play(); });
+		cancelBt.onClick.AddListener(delegate() { buttonSound.Play(); });
+
 	}
 
 	void exit(){

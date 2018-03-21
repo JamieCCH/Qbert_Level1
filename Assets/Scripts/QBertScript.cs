@@ -12,9 +12,9 @@ public class QBertScript : MonoBehaviour {
 
 	Animator anim;
 //	float overTime = 2f;
-	float startTime;
-	bool startMove = false;
-	float journeyLength;
+//	float startTime;
+//	bool startMove = false;
+//	float journeyLength;
 
 	public float speed = 1.0F;
 //	private float startTime;
@@ -22,7 +22,7 @@ public class QBertScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator>();
-		journeyLength = Vector3.Distance (rightCube.position,topCube.position);
+//		journeyLength = Vector3.Distance (rightCube.position,topCube.position);
 //		startTime = Time.time;
 	}
 
@@ -57,10 +57,9 @@ public class QBertScript : MonoBehaviour {
 		{
 			transform.position += rightCube.position - topCube.position;
 			anim.SetBool ("isDownR",true);
-			//			startTime = Time.time;
-			//			journeyLength = Vector3.Distance (topCube.position, rightCube.position);
-			//			startMove = true;
-
+//			startTime = Time.time;
+//			journeyLength = Vector3.Distance (topCube.position, rightCube.position);
+//			startMove = true;	
 		}
 
 		if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.Keypad7)) //move down right
@@ -70,11 +69,11 @@ public class QBertScript : MonoBehaviour {
 
 
 
-		if(startMove){
+//		if(startMove){
 //			float distCovered = (Time.time - startTime)*1f;
 //			float fracJourney = distCovered / journeyLength;
 //			transform.position = Vector3.Slerp (startPos.position, rightPos.position, fracJourney);
-			anim.SetBool ("isDownR",false);
+//			anim.SetBool ("isDownR",false);
 //			StartCoroutine(moveQbert(rightCube));
 		}
 
@@ -86,7 +85,7 @@ public class QBertScript : MonoBehaviour {
 //			rightPos.position = startPos.position + (vector.normalized * journeyLength);
 //		}
 
-	}
+//	}
 
 //	IEnumerator moveQbert(Transform target)
 //	{
@@ -100,7 +99,8 @@ public class QBertScript : MonoBehaviour {
 //			Debug.Log("Reached the target.");
 //			yield return null;
 ////		}
-//		if(transform.position==rightCube.position){
+//
+//		if(distCovered >= fracJourney){
 //			yield return new WaitForSeconds(1f);
 //
 //			Debug.Log("MyCoroutine is now finished.");

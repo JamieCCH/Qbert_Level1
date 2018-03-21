@@ -11,24 +11,36 @@ public class MenuScript : MonoBehaviour {
 	public Button startBt;
 	public Button leaderBt;
 	public Button exitBt;
+	public GameObject LeaderBoard;
+	public Button closeBt;
 
 
-	// Use this for initialization
 	void Start () {
-		
 		AudioSource buttonSound = GetComponent<AudioSource>();
 
 		startBt.onClick.AddListener(delegate() { buttonSound.Play(); });
 		exitBt.onClick.AddListener(delegate() { buttonSound.Play(); });
 		leaderBt.onClick.AddListener(delegate() { buttonSound.Play(); });
+		closeBt.onClick.AddListener(delegate() { buttonSound.Play(); });
 
 		startBt.onClick.AddListener (()=>SceneManager.LoadScene ("Game"));
 		exitBt.onClick.AddListener (exit);
+		leaderBt.onClick.AddListener (showLeaderBoard);
+	}
+		
+
+	void showLeaderBoard(){
+		
+		LeaderBoard.SetActive (true);
+
+		if(LeaderBoard.activeSelf == true)
+		{
+			closeBt.onClick.AddListener (hideBoard);
+		}
 	}
 
-	// Update is called once per frame
-	void Update () {
-		
+	void hideBoard(){
+		LeaderBoard.SetActive (false);
 	}
 
 	void exit(){
