@@ -7,6 +7,8 @@ TagManager:
   - Hud
   - EscPanel
   - Cube
+  - Elevator
+  - Enemy
   layers:
   - Default
   - TransparentFX

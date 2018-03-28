@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f49c9c944079b41dcbebdb659e73679d
-timeCreated: 1518710277
+timeCreated: 1522180639
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -39,6 +39,7 @@ TextureImporter:
     21300064: Cube_Yellow
     21300066: Arrow_Left
     21300068: Arrow_Right
+    21300070: GreenBall_02
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -615,7 +616,7 @@ TextureImporter:
         width: 7
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -628,6 +629,20 @@ TextureImporter:
         y: 259
         width: 7
         height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GreenBall_02
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 352
+        width: 10
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

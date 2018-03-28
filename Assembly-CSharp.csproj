@@ -54,9 +54,13 @@
      <Compile Include="Assets\Scripts\BringToFront.cs" />
      <Compile Include="Assets\Scripts\CubeFunc.cs" />
      <Compile Include="Assets\Scripts\CubeLogic.cs" />
+     <Compile Include="Assets\Scripts\DropQbert.cs" />
+     <Compile Include="Assets\Scripts\DropQbertBottom.cs" />
+     <Compile Include="Assets\Scripts\DropQbertLeft.cs" />
      <Compile Include="Assets\Scripts\ElevatorScript.cs" />
      <Compile Include="Assets\Scripts\EscPanelScript.cs" />
      <Compile Include="Assets\Scripts\MenuScript.cs" />
+     <Compile Include="Assets\Scripts\MoveBall.cs" />
      <Compile Include="Assets\Scripts\QBertScript.cs" />
      <Compile Include="Assets\Scripts\QuitGame.cs" />
      <Compile Include="Assets\Scripts\SceneChange.cs" />

@@ -4,31 +4,51 @@ using UnityEngine;
 
 public class QBertScript : MonoBehaviour {
 
-	public Transform topCube;
-	public Transform rightCube;
-	public Transform leftCube;
-	Transform startPos;
-//	Transform rightPos;
+	public GameObject topCube;
+	public GameObject rightCube;
+	public GameObject leftCube;
+
+//	Vector3 distDownRight;
+//	Vector3 distDownLeft;
+//	Vector3 distUpRight;
+//	Vector3 distUpLeft;
+//
+//	Transform startPos;
+//	Transform endPos;
 
 	Animator anim;
-//	float overTime = 2f;
-//	float startTime;
+
 //	bool startMove = false;
+
 //	float journeyLength;
+//	float speed = 0.25f;
+//	float startTime;
 
-	public float speed = 1.0F;
-//	private float startTime;
+//	float distCovered;
+//	float fracJourney;
 
-	// Use this for initialization
+	float cubeWidth = 0.15f;
+	float cubeHeight = 0.24f;
+	float nextX;
+	float nextY;
+
 	void Start () {
 		anim = GetComponent<Animator>();
-//		journeyLength = Vector3.Distance (rightCube.position,topCube.position);
-//		startTime = Time.time;
+
+//		distDownRight = rightCube.transform.position - topCube.transform.position;
+//		distDownLeft = leftCube.transform.position - topCube.transform.position ;
+//		distUpRight = topCube.transform.position - leftCube.transform.position;
+//		distUpLeft = topCube.transform.position - rightCube.transform.position;
+//
+//		startPos = topCube.gameObject.transform;
+//		endPos = rightCube.gameObject.transform;
+//		Debug.Log("endPos.position1 : " + endPos.position);
+//		Debug.Log("rightCube.position1 : " + rightCube.gameObject.transform.position);
 	}
 
 //	void OnCollisionEnter2D (Collision2D other) 
 //	{
-//		if (other.gameObject.tag == "Cube") {
+//		if (other.gameObject.name == "Elevator") {
 //			Debug.Log ("OnCollisionEnter2D");
 //		}
 //	}
@@ -36,69 +56,130 @@ public class QBertScript : MonoBehaviour {
 
 	void Update() 
 	{
-//		Vector2 distDownRight = rightCube.position - topCube.position;
-//		Vector2 distDownLeft = leftCube.position - topCube.position ;
-//		Vector2 distUpRight = distDownRight * -1;
-//		Vector2 distUpLeft = distDownLeft * -1;
-
-//		float distCovered = (Time.time - startTime) * speed;
-//		float fracJourney = distCovered / journeyLength;
-//		transform.position = Vector3.Lerp(topCube.position, rightCube.position, fracJourney);
-
-
-		if(Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.Keypad7)) //move up left
-			transform.position -= rightCube.position - topCube.position;
-		if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Keypad7)) //move up right
-			transform.position -= leftCube.position - topCube.position;
-		if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.Keypad7)) //move down left
-			transform.position += leftCube.position - topCube.position;
-
-		if(Input.GetKeyDown(KeyCode.S)||Input.GetKeyUp(KeyCode.Keypad7))
+		if (Input.GetKeyDown (KeyCode.Q) || Input.GetKeyDown (KeyCode.Keypad7)) //move topf left
 		{
-			transform.position += rightCube.position - topCube.position;
+			anim.SetBool ("isUpL", true);
+			nextY = transform.position.y + cubeHeight;
+			transform.position = new Vector3 (transform.position.x, nextY, 0);
+			StartCoroutine (moveQbertUp("left"));
+//			transform.position += distUpLeft;
+//			transform.Translate (distUpLeft*speed);
+		}	
+
+		if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Keypad9)) //move top right
+		{
+			anim.SetBool ("isUpR",true);
+//			transform.position += distUpRight;
+//			transform.Translate (distUpRight*speed);
+
+			nextY = transform.position.y + cubeHeight;
+			transform.position = new Vector3 (transform.position.x, nextY, 0);
+			StartCoroutine (moveQbertUp("right"));
+		}
+	
+		if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Keypad1))  //move bottom left
+		{
+			anim.SetBool ("isDownL",true);
+//			transform.position += distDownLeft;
+//			transform.Translate (distDownLeft*speed);
+
+			nextX = transform.position.x - cubeWidth;
+			transform.position = new Vector3 (nextX, transform.position.y, 0);
+			StartCoroutine (moveQbertDown());
+
+		}
+		if(Input.GetKeyDown(KeyCode.S)||Input.GetKeyDown(KeyCode.Keypad3)) //move bottom right
+		{
 			anim.SetBool ("isDownR",true);
+			nextX = transform.position.x + cubeWidth;
+			transform.position = new Vector3 (nextX, transform.position.y, 0);
+//			distDownRight = new Vector3 (nextX, transform.position.y, 0);
+//			transform.Translate (distDownRight * 0.35f);
+			StartCoroutine (moveQbertDown());
 //			startTime = Time.time;
-//			journeyLength = Vector3.Distance (topCube.position, rightCube.position);
-//			startMove = true;	
+//			startMove = true;
+
+//			endPos.position = new Vector3 (nextX, nextY, 0);
+
+//			if(transform.position.x != 0 && transform.position.y != 0.32f){
+//				nextX = endPos.position.x + cubeWidth;
+//				nextY = endPos.position.y + cubeHeight;
+//				endPos.position = new Vector3 (nextX, nextY, 0);
+//				journeyLength = Vector3.Distance (endPos.position,topCube.transform.position);
+//
+				
+//				startPos = endPos;
+//			}
+
+//			Debug.Log("endPos.position2 : " + endPos.position);
+//			Debug.Log("rightCube.position2 : " + rightCube.gameObject.transform.position);
+
 		}
-
-		if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.Keypad7)) //move down right
-		{
-			anim.SetBool ("isDownR",false);
-		}
-
-
 
 //		if(startMove){
-//			float distCovered = (Time.time - startTime)*1f;
-//			float fracJourney = distCovered / journeyLength;
-//			transform.position = Vector3.Slerp (startPos.position, rightPos.position, fracJourney);
-//			anim.SetBool ("isDownR",false);
-//			StartCoroutine(moveQbert(rightCube));
-		}
-
-//		if(transform.position==rightCube.position){
-//			startMove = false;
-////			anim.SetBool ("isDownR",false);
-//			Vector3 vector = rightPos.position - startPos.position;
-//			startPos = rightPos;
-//			rightPos.position = startPos.position + (vector.normalized * journeyLength);
+//			StartCoroutine (moveQbert());
+//			anim.SetBool ("isDownR",true);
+//			distCovered = (Time.time - startTime) * speed;
+//			fracJourney = distCovered / journeyLength;
+//			startPos.transform.position = gameObject.transform.position;
+//			endPos.transform.position = distDownRight;
+//			transform.position = Vector3.Lerp(startPos.position, endPos.position, fracJourney);
 //		}
 
-//	}
 
-//	IEnumerator moveQbert(Transform target)
+
+	} //updated ends
+
+	IEnumerator moveQbertDown(){
+
+//		switch (str){
+//		case "left":
+//			nextX = transform.position.x - cubeWidth;
+//			break;
+//		case "down":
+//			nextY = transform.position.y - cubeHeight;
+//			break;
+//		}
+
+		yield return new WaitForSeconds(0.05f);
+//		distCovered = (Time.time - startTime) * speed;
+//		fracJourney = distCovered / journeyLength;
+//		transform.position = Vector3.Lerp(startPos.position, endPos.position, fracJourney);
+		nextY = transform.position.y - cubeHeight;
+		transform.position = new Vector3 (nextX, nextY, 0);
+//		transform.Translate (distDownRight * 0.35f);
+//		anim.SetBool ("isDownR",false);
+	}
+
+	IEnumerator moveQbertUp(string str){
+
+		yield return new WaitForSeconds(0.05f);
+
+		switch (str){
+		case "left":
+			nextX = transform.position.x - cubeWidth;
+			break;
+		case "right":
+			nextX = transform.position.x + cubeWidth;
+			break;
+		}		
+
+		transform.position = new Vector3 (nextX, nextY, 0);
+	}
+
+//	IEnumerator moveQbert()
 //	{
-////		while(Vector3.Distance (transform.position, target.position)>0.05f)
-////		{
+//		while(Vector3.Distance (transform.position, endPos.position)>0.05f)
+//		{
 //			anim.SetBool ("isDownR",true);
-//			float distCovered = (Time.time - startTime)*1f;
-//			float fracJourney = distCovered / journeyLength;
-//			transform.position = Vector3.Lerp (startPos.position, target.position, fracJourney);
+//
+//			distCovered = (Time.time - startTime) * speed;
+//			fracJourney = distCovered / journeyLength;
+//			transform.position = Vector3.Lerp(startPos.position, endPos.position, 0.9f);
 //
 //			Debug.Log("Reached the target.");
 //			yield return null;
-////		}
+//		}
 //
 //		if(distCovered >= fracJourney){
 //			yield return new WaitForSeconds(1f);
@@ -108,13 +189,10 @@ public class QBertScript : MonoBehaviour {
 //			startMove = false;
 //			anim.SetBool ("isDownR",false);
 //
-////			startPos = rightPos;
-////			rightPos.position = startPos.position + (vector.normalized * journeyLength);
+//			startPos = rightPos;
+//			rightPos.position = startPos.position + (vector.normalized * journeyLength);
 //		}
-//
-//
-//		//isDownR = true;
-////		anim.SetBool ("isDownR",true);
+//				
 //	}
 
-}
+	}
