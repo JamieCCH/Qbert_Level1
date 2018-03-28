@@ -9,6 +9,8 @@ TagManager:
   - Cube
   - Elevator
   - Enemy
+  - RedBall
+  - GreenBall
   layers:
   - Default
   - TransparentFX

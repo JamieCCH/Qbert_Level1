@@ -64,6 +64,7 @@
      <Compile Include="Assets\Scripts\QBertScript.cs" />
      <Compile Include="Assets\Scripts\QuitGame.cs" />
      <Compile Include="Assets\Scripts\SceneChange.cs" />
+     <Compile Include="Assets\Scripts\SpawnBall.cs" />
      <Compile Include="Assets\Scripts\UIscript.cs" />
  <Reference Include="Facebook.Unity.Settings">
  <HintPath>/Users/jamie/Documents/2018Winter/GAME2030_GameProductionIV/Milestone2/Game2030_QBert_M2/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>

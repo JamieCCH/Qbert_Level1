@@ -1,12 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DropQbertBottom.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MoveBall.cs">
     <Files>
-      <File FileName="Assets/Scripts/ElevatorScript.cs" Line="20" Column="20" />
       <File FileName="Assets/Scripts/QBertScript.cs" Line="30" Column="17" />
-      <File FileName="Assets/Scripts/MoveBall.cs" Line="6" Column="2" />
-      <File FileName="Assets/Scripts/DropQbertLeft.cs" Line="39" Column="2" />
-      <File FileName="Assets/Scripts/DropQbertBottom.cs" Line="28" Column="34" />
+      <File FileName="Assets/Scripts/MoveBall.cs" Line="56" Column="50" />
+      <File FileName="Assets/Scripts/SpawnBall.cs" Line="30" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

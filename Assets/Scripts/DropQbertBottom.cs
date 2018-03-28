@@ -28,5 +28,11 @@ public class DropQbertBottom : MonoBehaviour {
 			QbertCollider.enabled = false;
 			FallAud.Play ();
 		}
+
+		if (c.gameObject.tag == "GreenBall" || c.gameObject.tag == "RedBall")
+		{
+			Destroy (c.gameObject);
+		}
+
 	}
 }
