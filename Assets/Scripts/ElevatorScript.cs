@@ -9,7 +9,7 @@ public class ElevatorScript : MonoBehaviour {
 	GameObject Terminal;
 	Vector3 destPos;
 	public bool isOn;
-	public bool destoried;
+//	public bool isKeysEnabled;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +17,6 @@ public class ElevatorScript : MonoBehaviour {
 		Qbert = GameObject.FindGameObjectWithTag ("Player");
 		destPos = Terminal.transform.position - gameObject.transform.position;
 		liftAud = this.GetComponent<AudioSource>();
-		destoried = false;
 	}
 	
 	// Update is called once per frame
@@ -26,9 +25,9 @@ public class ElevatorScript : MonoBehaviour {
 		if(isOn){
 			transform.Translate(destPos * Time.deltaTime);
 			Qbert.transform.Translate (destPos * Time.deltaTime);
-//			Debug.Log ("Termianl pos: " + Terminal.transform.position);
-//			Debug.Log ("Elevator pos: " + gameObject.transform.position);
+//			isKeysEnabled = false;
 		}
+
 		if(isOn && gameObject.transform.position.y >= Terminal.transform.position.y){
 			isOn = false;
 			StartCoroutine(DestroyElevator ());
@@ -48,8 +47,8 @@ public class ElevatorScript : MonoBehaviour {
 	IEnumerator DestroyElevator(){
 		yield return new WaitForSeconds(0.5f);
 		Destroy (this.gameObject);
+//		isKeysEnabled = true;
 		isOn = false;
-		destoried = true;
 		Qbert.transform.position = new Vector3(0.016f, 0.48f, 0);
 	}
 

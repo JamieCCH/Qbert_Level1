@@ -9,12 +9,10 @@ public class MoveBall : MonoBehaviour {
 	float nextX;
 	float nextY;
 
-	Animator anim;
 	string animStateName;
 
 	// Use this for initialization
 	void Start () {
-		anim = GetComponent <Animator> ();
 //		InvokeRepeating("InstantBall", 1.5f, 12.5f);
 		InvokeRepeating ("checkDir", 1.5f, 2.5f);
 		animStateName = this.gameObject.tag;
@@ -41,8 +39,6 @@ public class MoveBall : MonoBehaviour {
 
 		StartCoroutine(keepDown());
 		this.GetComponent<Animator> ().Play(animStateName,0,0.01f);
-//		this.GetComponent<Animator> ().Play("GreenBall",0,0.01f);
-
 	}
 
 	IEnumerator startMoveLeft(){
@@ -53,7 +49,6 @@ public class MoveBall : MonoBehaviour {
 
 		StartCoroutine(keepDown ());
 		this.GetComponent<Animator> ().Play(animStateName,0,0.01f);
-//		this.GetComponent<Animator> ().Play("GreenBall",0,0.01f);
 	}
 
 	IEnumerator keepDown(){

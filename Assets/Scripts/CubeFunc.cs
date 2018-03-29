@@ -19,28 +19,6 @@ public class CubeFunc : MonoBehaviour {
 	}
 
 	void Update(){
-//		Vector3 down = transform.TransformDirection(Vector3.down) * 0.5f;
-//		QbertRay = new Ray(Qbert.transform.position, down);
-//		RaycastHit2D hit;
-
-//		RaycastHit2D hit = Physics2D.Raycast(Qbert.transform.position, Vector2.down, 0.5f);
-//		if (hit.point != null) {
-//			Debug.Log (hit.transform.name);
-//		}
-
-//		if(Physics2D.Raycast(Qbert.transform.position, Vector2.down, out hit, 0.5f))
-//		{
-//			if(hit.collider == null)
-//			Debug.Log (hit.transform.name);
-//			Debug.Log ("null");
-//		}	
-
-
-		Debug.DrawRay(Qbert.transform.position, Vector2.down, Color.green);
-
-//		RaycastHit2D hit = Physics.Raycast(Qbert.transform.position, Vector2.down);
-
-//		Debug.Log (hit.transform.name);
 
 	}
 

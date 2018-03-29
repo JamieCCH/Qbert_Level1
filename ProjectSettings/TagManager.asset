@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - RedBall
   - GreenBall
+  - Coily
   layers:
   - Default
   - TransparentFX

@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\BringToFront.cs" />
+     <Compile Include="Assets\Scripts\CoilyMove.cs" />
      <Compile Include="Assets\Scripts\CubeFunc.cs" />
      <Compile Include="Assets\Scripts\CubeLogic.cs" />
      <Compile Include="Assets\Scripts\DropQbert.cs" />
