@@ -12,6 +12,8 @@ TagManager:
   - RedBall
   - GreenBall
   - Coily
+  - EdgeDrop
+  - CoilyDrop
   layers:
   - Default
   - TransparentFX

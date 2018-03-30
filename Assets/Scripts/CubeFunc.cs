@@ -15,7 +15,6 @@ public class CubeFunc : MonoBehaviour {
 		anim.SetBool ("isHit", false);
 		anim.speed = 0;
 		Qbert = GameObject.FindGameObjectWithTag ("Player");
-
 	}
 
 	void Update(){

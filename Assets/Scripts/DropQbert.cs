@@ -17,6 +17,7 @@ public class DropQbert : MonoBehaviour {
 		QbertCollider = Qbert.GetComponent<BoxCollider2D> ();
 		FallAud = this.GetComponent<AudioSource>();
 		elevator = GameObject.Find ("Elevator");
+
 	}
 
 	// Update is called once per frame
@@ -26,22 +27,11 @@ public class DropQbert : MonoBehaviour {
 		if(elevator != null){
 			onElevator = elevator.GetComponent<ElevatorScript> ().isOn;
 		}
-//		if( !elevator[1].GetComponent<ElevatorScript>().destoried && elevator != null){
-//			onElevator = elevator [1].GetComponent<ElevatorScript> ().isOn;
-//		}
 
-
-//		Debug.Log (elevator[0].name);
-//		Debug.Log (elevator[1].name);
-//
-//		if(elevator[0] != null){
-//			onElevator = elevator[0].GetComponent<ElevatorScript> ().isOn;
-//		}else if(elevator[1] != null){
-//			onElevator = elevator[1].GetComponent<ElevatorScript> ().isOn;
-//		}
 	}
 
-	void OnCollisionEnter2D (Collision2D c) 
+//	void OnCollisionEnter2D (Collision2D c) 
+	void OnTriggerEnter2D(Collider2D c)
 	{
 		if (c.gameObject.tag == "Player" && onElevator == false)
 		{

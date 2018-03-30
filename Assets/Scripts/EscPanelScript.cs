@@ -11,15 +11,20 @@ public class EscPanelScript : MonoBehaviour {
 	public Button exitBt;
 	public Button cancelBt;
 	public GameObject EscPanelObj;
+	bool gamePause = false;
 
 	void Start () {
-
+		
 	}
-
+	 
 	void Update () 
 	{
-		if(Input.GetKeyUp(KeyCode.Escape))
+		if(Input.GetKeyUp(KeyCode.Escape)){
 			EscPanelObj.SetActive (true);
+			gamePause = true;
+			Time.timeScale = 0; //PauseGame
+		}
+	
 
 		if(EscPanelObj.activeSelf == true)
 		{
@@ -53,8 +58,9 @@ public class EscPanelScript : MonoBehaviour {
 		if(EscPanelObj.activeSelf == true)
 		{
 			EscPanelObj.SetActive (false);
+			gamePause = false;
+			Time.timeScale = 1;	 //ContinueGame
 		}
 
 	}
-
 }

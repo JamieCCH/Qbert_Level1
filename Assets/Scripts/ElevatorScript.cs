@@ -9,7 +9,6 @@ public class ElevatorScript : MonoBehaviour {
 	GameObject Terminal;
 	Vector3 destPos;
 	public bool isOn;
-//	public bool isKeysEnabled;
 
 	// Use this for initialization
 	void Start () {

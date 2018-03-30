@@ -21,11 +21,15 @@ public class QBertScript : MonoBehaviour {
 	float nextX;
 	float nextY;
 
-	bool enableKey = true;
+	public bool enableKey = true;
+
+//	bool onElevator;
+//	AudioSource FallAud;
 
 	void Start () {
 		
-		anim = GetComponent<Animator>();
+		anim = this.GetComponent<Animator>();
+//		FallAud = this.GetComponent<AudioSource> ();
 
 //		distDownRight = rightCube.transform.position - topCube.transform.position;
 //		distDownLeft = leftCube.transform.position - topCube.transform.position ;
@@ -41,11 +45,23 @@ public class QBertScript : MonoBehaviour {
 		}else if(other.gameObject.name == "PurpleCube"){
 			enableKey = true;
 		}
-	}
 
+//		if (other.gameObject.tag == "EdgeDrop" && onElevator == false)
+//		{
+//			this.GetComponent <BoxCollider2D>().enabled = false;
+//			this.GetComponent<SpriteRenderer>().sortingLayerName = "cube";
+//			FallAud.Play ();
+//		}
+	}
 
 	void Update() 
 	{	
+		if(this.GetComponent <BoxCollider2D>().enabled == !enabled || Time.timeScale == 0){
+			enableKey = false;
+		}else{
+			enableKey = true;
+		}
+
 		if (enableKey && Input.GetKeyDown (KeyCode.Q) || Input.GetKeyDown (KeyCode.Keypad7)) //move topf left
 		{
 			anim.SetBool ("isUpL", true);
@@ -115,7 +131,7 @@ public class QBertScript : MonoBehaviour {
 		case "right":
 			nextX = transform.position.x + cubeWidth;
 			break;
-		}		
+		}
 		this.GetComponent <BoxCollider2D>().enabled = enabled;
 		transform.position = new Vector3 (nextX, nextY, 0);
 	}

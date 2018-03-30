@@ -11,6 +11,7 @@ public class DropQbertLeft : MonoBehaviour {
 	bool elevatorGone;
 	GameObject elevator;
 
+
 	// Use this for initialization
 	void Start () {
 		Qbert = GameObject.FindGameObjectWithTag ("Player");
@@ -27,7 +28,9 @@ public class DropQbertLeft : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter2D (Collision2D c) 
+
+//	void OnCollisionEnter2D (Collision2D c) 
+	void OnTriggerEnter2D(Collider2D c)
 	{
 		if (c.gameObject.tag == "Player" && onElevator == false)
 		{
@@ -36,4 +39,5 @@ public class DropQbertLeft : MonoBehaviour {
 			FallAud.Play ();
 		}
 	}
+
 }
