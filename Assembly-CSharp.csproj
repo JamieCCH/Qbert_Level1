@@ -9,7 +9,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
+<<<<<<< HEAD
     <ProjectGuid>{AA76BEC6-A507-6E13-9A4B-2F0FA24A8001}</ProjectGuid>
+=======
+    <ProjectGuid>{C57B66C4-D618-7BF7-934D-A4DE782C6703}</ProjectGuid>
+>>>>>>> milestone2
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -51,9 +55,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
      <Compile Include="Assets\Scripts\UIscript.cs" />
  <Reference Include="Facebook.Unity.Settings">
  <HintPath>/Users/jamie/Documents/2018Winter/GAME2030_GameProductionIV/Milestone1/Game2030_QBert_M1/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
+=======
+     <Compile Include="Assets\Scripts\BringToFront.cs" />
+     <Compile Include="Assets\Scripts\CoilyMove.cs" />
+     <Compile Include="Assets\Scripts\CubeFunc.cs" />
+     <Compile Include="Assets\Scripts\CubeLogic.cs" />
+     <Compile Include="Assets\Scripts\DropQbert.cs" />
+     <Compile Include="Assets\Scripts\DropQbertBottom.cs" />
+     <Compile Include="Assets\Scripts\DropQbertLeft.cs" />
+     <Compile Include="Assets\Scripts\ElevatorScript.cs" />
+     <Compile Include="Assets\Scripts\EscPanelScript.cs" />
+     <Compile Include="Assets\Scripts\MenuScript.cs" />
+     <Compile Include="Assets\Scripts\MoveBall.cs" />
+     <Compile Include="Assets\Scripts\QBertScript.cs" />
+     <Compile Include="Assets\Scripts\QuitGame.cs" />
+     <Compile Include="Assets\Scripts\SceneChange.cs" />
+     <Compile Include="Assets\Scripts\SpawnBall.cs" />
+     <Compile Include="Assets\Scripts\UIscript.cs" />
+ <Reference Include="Facebook.Unity.Settings">
+ <HintPath>/Users/jamie/Documents/2018Winter/GAME2030_GameProductionIV/Milestone2/Game2030_QBert_M2/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
+>>>>>>> milestone2
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

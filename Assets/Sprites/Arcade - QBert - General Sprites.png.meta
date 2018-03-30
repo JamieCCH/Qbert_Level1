@@ -1,5 +1,6 @@
 fileFormatVersion: 2
 guid: f49c9c944079b41dcbebdb659e73679d
+<<<<<<< HEAD
 timeCreated: 1518709525
 licenseType: Free
 TextureImporter:
@@ -7,6 +8,15 @@ TextureImporter:
     21300000: Purple
     21300002: changeToCube
     21300004: QBert
+=======
+timeCreated: 1522332330
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Cube_Purple
+    21300002: changeToCube
+    21300004: QBert_downRight_01
+>>>>>>> milestone2
     21300006: Title_Level
     21300008: Title_Round
     21300010: Title_ChageTo
@@ -25,8 +35,32 @@ TextureImporter:
     21300036: Coily_L_01
     21300038: Coily_L_02
     21300040: curse
+<<<<<<< HEAD
     21300042: Arrow_Left
     21300044: Arrow_Right
+=======
+    21300042: QBert_downRight_02
+    21300044: QBert_downLeft_01
+    21300046: QBert_downLeft_02
+    21300048: QBert_upRight_01
+    21300050: QBert_upRight_02
+    21300052: QBert_upLeft_01
+    21300054: QBert_upLeft_02
+    21300056: QuestionMark_Green
+    21300058: QuestionMark_Orange
+    21300060: ExclamationMark_Green
+    21300062: ExclamationMark_Orange
+    21300064: Cube_Yellow
+    21300066: Arrow_Left
+    21300068: Arrow_Right
+    21300070: GreenBall_02
+    21300072: coilyBall_01
+    21300074: coilyBall_02
+    21300076: Coily_BR_01
+    21300078: Coily_BR_02
+    21300080: Coily_BL_01
+    21300082: Coily_BL_02
+>>>>>>> milestone2
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -133,7 +167,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
+<<<<<<< HEAD
       name: Purple
+=======
+      name: Cube_Purple
+>>>>>>> milestone2
       rect:
         serializedVersion: 2
         x: 1
@@ -161,6 +199,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
+<<<<<<< HEAD
       name: QBert
       rect:
         serializedVersion: 2
@@ -168,6 +207,15 @@ TextureImporter:
         y: 368
         width: 15
         height: 14
+=======
+      name: QBert_downRight_01
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 368
+        width: 14
+        height: 16
+>>>>>>> milestone2
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -427,6 +475,177 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
+<<<<<<< HEAD
+=======
+      name: QBert_downRight_02
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 368
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: QBert_downLeft_01
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 368
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: QBert_downLeft_02
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 368
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: QBert_upRight_01
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 368
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: QBert_upRight_02
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 368
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: QBert_upLeft_01
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 368
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: QBert_upLeft_02
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 368
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: QuestionMark_Green
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 345
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: QuestionMark_Orange
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 337
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ExclamationMark_Green
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 345
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ExclamationMark_Orange
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 337
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cube_Yellow
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 160
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+>>>>>>> milestone2
       name: Arrow_Left
       rect:
         serializedVersion: 2
@@ -435,7 +654,11 @@ TextureImporter:
         width: 7
         height: 7
       alignment: 0
+<<<<<<< HEAD
       pivot: {x: 0, y: 0}
+=======
+      pivot: {x: 0.5, y: 0.5}
+>>>>>>> milestone2
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -449,7 +672,109 @@ TextureImporter:
         width: 7
         height: 7
       alignment: 0
+<<<<<<< HEAD
       pivot: {x: 0, y: 0}
+=======
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GreenBall_02
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 352
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coilyBall_01
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 352
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: coilyBall_02
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 351
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Coily_BR_01
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 320
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Coily_BR_02
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 320
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Coily_BL_01
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 320
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Coily_BL_02
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 320
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+>>>>>>> milestone2
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

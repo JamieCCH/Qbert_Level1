@@ -3,7 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags: []
+=======
+  tags:
+  - Hud
+  - EscPanel
+  - Cube
+  - Elevator
+  - Enemy
+  - RedBall
+  - GreenBall
+  - Coily
+  - EdgeDrop
+  - CoilyDrop
+>>>>>>> milestone2
   layers:
   - Default
   - TransparentFX
@@ -41,3 +55,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+<<<<<<< HEAD
+=======
+  - name: Cube
+    uniqueID: 3302511155
+    locked: 0
+  - name: Enemies
+    uniqueID: 1330918029
+    locked: 0
+  - name: Player
+    uniqueID: 847363391
+    locked: 0
+  - name: EscPanel
+    uniqueID: 2547209357
+    locked: 0
+>>>>>>> milestone2
