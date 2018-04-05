@@ -20,13 +20,12 @@ public class CoilyMove : MonoBehaviour {
 
 
 	void Start () {
-
 		coilySounds = this.GetComponents <AudioSource>();
 		Qbert = GameObject.Find ("QBert");
 		coilyAnim = this.GetComponent <Animator> ();
 		transform.Translate (Vector2.down * 0.37f);
 		coilySounds[1].Play();
-		InvokeRepeating ("moveDown", 0.5f, 2.0f);
+		InvokeRepeating ("moveDown", 0.5f, 0.8f);
 	}
 
 	void moveDown(){
@@ -48,13 +47,13 @@ public class CoilyMove : MonoBehaviour {
 
 	IEnumerator moveX(string str){
 		if(isBall)
-			yield return new WaitForSeconds(1.2f);
+			yield return new WaitForSeconds(0.5f);
 		
 		if(!isDown){}
 			yield return new WaitForSeconds(0.05f);
 		
 		if(isDown&&!isBall)
-			yield return new WaitForSeconds(0.8f);
+			yield return new WaitForSeconds(0.4f);
 
 
 		switch (str) {
@@ -105,9 +104,9 @@ public class CoilyMove : MonoBehaviour {
 
 		checkDirection ();
 
-		yield return new WaitForSeconds(1.3f);
-
-		startChase ();
+		yield return new WaitForSeconds(0.5f);
+		if(canMove)
+			startChase ();
 			
 	}
 
@@ -144,7 +143,6 @@ public class CoilyMove : MonoBehaviour {
 	}
 
 	void startChase(){
-		
 		if (!isDown && !isRight) {
 			StartCoroutine (moveUp ("left"));
 			coilyAnim.Play ("CoilyUpLeft", 0, 0);
@@ -168,8 +166,7 @@ public class CoilyMove : MonoBehaviour {
 	}
 
 	IEnumerator moveUp(string str){
-		
-		yield return new WaitForSeconds (0.7f);
+		yield return new WaitForSeconds (0.5f);
 		nextY = transform.position.y + cubeHeight;
 		coilySounds [0].Play ();
 		transform.position = new Vector3 (transform.position.x, nextY, 0);
@@ -183,9 +180,9 @@ public class CoilyMove : MonoBehaviour {
 		if (c.gameObject.tag == "CoilyDrop" && !isBall)
 		{
 //			Debug.Log ("coily drop");
-			canMove = false;
 			coilySounds[2].Play();
 			this.transform.Translate (Vector2.down * 1.4f);
+			canMove = false;
 			this.GetComponent<SpriteRenderer>().sortingLayerName = "default";
 			Destroy (this.gameObject,1.2f);
 		}

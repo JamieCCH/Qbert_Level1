@@ -19,7 +19,7 @@ public class MoveBall : MonoBehaviour {
 	void Start () {
 		JumpAud = this.GetComponent<AudioSource>();
 		canMove = true;
-		Invoke ("checkDir", 1.5f);
+		Invoke ("checkDir", 0.5f);
 		animStateName = this.gameObject.tag;
 		JumpAud.Play ();
 
@@ -46,7 +46,7 @@ public class MoveBall : MonoBehaviour {
 	IEnumerator startMoveRight(){
 		
 		if (canMove) {
-			yield return new WaitForSeconds (1.2f);
+			yield return new WaitForSeconds (0.5f);
 
 			nextX = this.transform.position.x + cubeWidth;
 			this.transform.position = new Vector3 (nextX, this.transform.position.y, 0);
@@ -58,7 +58,7 @@ public class MoveBall : MonoBehaviour {
 
 	IEnumerator startMoveLeft(){
 		if (canMove) {
-			yield return new WaitForSeconds (1.2f);
+			yield return new WaitForSeconds (0.5f);
 	
 			nextX = transform.position.x - cubeWidth;
 			this.transform.position = new Vector3 (nextX, this.transform.position.y, 0);
