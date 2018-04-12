@@ -24,9 +24,6 @@ public class CubeFunc : MonoBehaviour {
 	void OnCollisionEnter2D (Collision2D other) 
 	{
 		if (other.gameObject.tag == "Player") {
-
-//			Debug.Log (this.name);
-
 			aud.Play ();
 			anim.speed = 1;
 			anim.SetBool ("isHit", true);

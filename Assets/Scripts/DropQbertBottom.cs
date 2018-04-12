@@ -21,7 +21,8 @@ public class DropQbertBottom : MonoBehaviour {
 
 	}
 
-	void OnCollisionEnter2D (Collision2D c) 
+//	void OnCollisionEnter2D (Collision2D c)
+	void OnTriggerEnter2D(Collider2D c)
 	{
 		if (c.gameObject.tag == "Player")
 		{

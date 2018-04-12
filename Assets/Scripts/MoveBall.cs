@@ -22,7 +22,6 @@ public class MoveBall : MonoBehaviour {
 		Invoke ("checkDir", 0.5f);
 		animStateName = this.gameObject.tag;
 		JumpAud.Play ();
-
 	}
 		
 	void checkDir(){

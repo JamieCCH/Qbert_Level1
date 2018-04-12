@@ -2153,8 +2153,8 @@ GameObject:
   - component: {fileID: 635683041}
   - component: {fileID: 635683040}
   m_Layer: 5
-  m_Name: QBert
-  m_TagString: Untagged
+  m_Name: QBertLife
+  m_TagString: QbertIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3199,10 +3199,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.012993336, y: -1.2655491}
+  m_Offset: {x: -0.022367, y: -1.2655491}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3213,7 +3213,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0966358, y: 0.20480847}
+  m_Size: {x: 2.218494, y: 0.20480847}
   m_EdgeRadius: 0
 --- !u!4 &946626663
 Transform:
@@ -4721,8 +4721,8 @@ GameObject:
   - component: {fileID: 1800192850}
   - component: {fileID: 1800192849}
   m_Layer: 5
-  m_Name: QBert (1)
-  m_TagString: Untagged
+  m_Name: QBertLife
+  m_TagString: QbertIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4962,12 +4962,12 @@ Prefab:
     - target: {fileID: 61172012545235174, guid: 73976609af68d419bac69791a1b09ddf,
         type: 2}
       propertyPath: m_Offset.y
-      value: -0.07252365
+      value: -0.06549528
       objectReference: {fileID: 0}
     - target: {fileID: 61172012545235174, guid: 73976609af68d419bac69791a1b09ddf,
         type: 2}
       propertyPath: m_Size.y
-      value: 0.014994174
+      value: 0.02905092
       objectReference: {fileID: 0}
     - target: {fileID: 61172012545235174, guid: 73976609af68d419bac69791a1b09ddf,
         type: 2}

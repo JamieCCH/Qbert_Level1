@@ -10,6 +10,7 @@ public class DropQbert : MonoBehaviour {
 	bool onElevator;
 	bool elevatorGone;
 	GameObject elevator;
+
 		
 	// Use this for initialization
 	void Start () {
@@ -17,7 +18,6 @@ public class DropQbert : MonoBehaviour {
 		QbertCollider = Qbert.GetComponent<BoxCollider2D> ();
 		FallAud = this.GetComponent<AudioSource>();
 		elevator = GameObject.Find ("Elevator");
-
 	}
 
 	// Update is called once per frame
