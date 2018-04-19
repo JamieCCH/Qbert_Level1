@@ -8,7 +8,7 @@ public class ElevatorScript : MonoBehaviour {
 	GameObject Qbert;
 	GameObject Terminal;
 	Vector3 destPos;
-	public bool isOn;
+	public bool isOn = false;
 
 	// Use this for initialization
 	void Start () {
@@ -20,19 +20,16 @@ public class ElevatorScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
 		if(isOn){
 			transform.Translate(destPos * Time.deltaTime);
 			Qbert.transform.Translate (destPos * Time.deltaTime);
-//			isKeysEnabled = false;
 		}
 
 		if(isOn && gameObject.transform.position.y >= Terminal.transform.position.y){
 			isOn = false;
 			StartCoroutine(DestroyElevator ());
 			Qbert.GetComponent<Animator> ().SetTrigger ("default");
-		}
-		
+		}	
 	}
 
 	void OnCollisionEnter2D (Collision2D other) 
@@ -44,11 +41,11 @@ public class ElevatorScript : MonoBehaviour {
 	}
 
 	IEnumerator DestroyElevator(){
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(1.8f);
 		Destroy (this.gameObject);
-//		isKeysEnabled = true;
-		isOn = false;
+
 		Qbert.transform.position = new Vector3(0.016f, 0.48f, 0);
+		isOn = false;
 	}
 
 }

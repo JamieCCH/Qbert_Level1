@@ -4962,22 +4962,22 @@ Prefab:
     - target: {fileID: 61172012545235174, guid: 73976609af68d419bac69791a1b09ddf,
         type: 2}
       propertyPath: m_Offset.y
-      value: -0.06549528
+      value: -0.072100155
       objectReference: {fileID: 0}
     - target: {fileID: 61172012545235174, guid: 73976609af68d419bac69791a1b09ddf,
         type: 2}
       propertyPath: m_Size.y
-      value: 0.02905092
+      value: 0.015841171
       objectReference: {fileID: 0}
     - target: {fileID: 61172012545235174, guid: 73976609af68d419bac69791a1b09ddf,
         type: 2}
       propertyPath: m_Offset.x
-      value: -0.007538624
+      value: -0.00863941
       objectReference: {fileID: 0}
     - target: {fileID: 61172012545235174, guid: 73976609af68d419bac69791a1b09ddf,
         type: 2}
       propertyPath: m_Size.x
-      value: 0.08934042
+      value: 0.05851835
       objectReference: {fileID: 0}
     - target: {fileID: 50778999769390552, guid: 73976609af68d419bac69791a1b09ddf,
         type: 2}

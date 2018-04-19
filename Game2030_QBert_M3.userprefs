@@ -2,12 +2,13 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/QBertScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/QBertScript.cs" Line="130" Column="95" />
-      <File FileName="Assets/Scripts/CubeFunc.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/QBertScript.cs" Line="40" Column="39" />
+      <File FileName="Assets/Scripts/CubeFunc.cs" Line="28" Column="19" />
       <File FileName="Assets/Scripts/MoveBall.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CoilyMove.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/DropQbert.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/DropQbertBottom.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CoilyMove.cs" Line="118" Column="40" />
+      <File FileName="Assets/Scripts/ElevatorScript.cs" Line="45" Column="38" />
+      <File FileName="Assets/Scripts/DropQbertLeft.cs" Line="28" Column="4" />
+      <File FileName="Assets/Scripts/DropQbert.cs" Line="29" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

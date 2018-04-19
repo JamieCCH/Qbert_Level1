@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QBertScript : MonoBehaviour {
 
 	GameObject elevator;
+	GameObject swearWords;
+	GameObject[] QbertIcons;
+
 	Animator anim;
+	AudioSource swearAud;
+	Vector3 QbertSpawner;
 
 	float cubeWidth = 0.15f;
 	float cubeHeight = 0.24f;
@@ -14,17 +20,14 @@ public class QBertScript : MonoBehaviour {
 
 	bool enableKey = true;
 	bool cooldown = false;
-	GameObject swearWords;
-	AudioSource swearAud;
+	bool onElevator = false;
+	bool isFall;
 
 	int lifeShow = 2;
 	int life = 3;
 
-	GameObject[] QbertIcons;
-
-	bool isFall;
-	Vector3 QbertSpawner;
-
+	int score;
+	Text scoreText;
 
 	void Start () {
 		anim = this.GetComponent<Animator>();
@@ -32,28 +35,42 @@ public class QBertScript : MonoBehaviour {
 		swearWords = this.transform.GetChild (0).gameObject;
 		QbertIcons = GameObject.FindGameObjectsWithTag ("QbertIcon");
 		QbertSpawner = this.transform.position;
+		GameObject textObj = GameObject.Find ("Score");
+		scoreText = textObj.GetComponent<Text>();
+		Debug.Log (scoreText);
 	}
 
 	void OnCollisionEnter2D (Collision2D other) 
 	{
 		if (other.gameObject.tag == "Elevator") {
-			enableKey = false;
+			onElevator = true;
 		}else if(other.gameObject.name == "PurpleCube"){
-			enableKey = true;
+			onElevator = false;
 		}
 
-		if(other.gameObject.tag == "Coily" || other.gameObject.tag == "RedBall"){
+		if(other.gameObject.tag == "Coily" || other.gameObject.tag == "RedBall" && !onElevator){
 			Destroy (other.gameObject,0.48f);
 			this.enabled = false;
 			StartCoroutine ("QbertDeath", 0.5f);
 			swearAud.Play ();
 			swearWords.SetActive (true);
 		}
+
+		if(other.gameObject.tag == "Cube"){
+			bool cubeColorChanged = other.gameObject.GetComponent<Animator> ().GetBool ("isHit");
+			if(!cubeColorChanged){
+				score += 25;
+				scoreText.text = ""+score;
+			}
+		}
+
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if(other.gameObject.tag == "EdgeDrop"){
+		
+		if(other.gameObject.tag == "EdgeDrop" && !onElevator){
 			isFall = true;
+			Debug.Log ("HI");
 			StartCoroutine ("QbertDeath", 0.5f);
 		}
 	}
@@ -65,7 +82,7 @@ public class QBertScript : MonoBehaviour {
 
 	void Update() 
 	{	
-		if(this.GetComponent <BoxCollider2D>().enabled == !enabled || Time.timeScale == 0){
+		if(this.GetComponent <BoxCollider2D>().enabled == !enabled || Time.timeScale == 0 ||onElevator){
 			enableKey = false;
 		}else{
 			enableKey = true;
