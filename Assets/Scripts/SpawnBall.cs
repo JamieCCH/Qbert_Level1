@@ -12,17 +12,20 @@ public class SpawnBall : MonoBehaviour {
 	public Transform SpawnerL;
 
 	GameObject Ball;
-	GameObject newCoily;
+//	GameObject newCoily;
 
-	// Use this for initialization
-	void Start () {
-		float repeatRate = Random.Range (7f, 12f);
+	void Awake(){
+		float repeatRate = Random.Range (2.5f, 5.5f);
 		InvokeRepeating ("InstantBall", 1.5f, repeatRate);
+	}
+
+	void Start () {
+		
 	}
 	
 	IEnumerator InstantCoily()
 	{
-		yield return new WaitForSeconds(3.5f);
+		yield return new WaitForSeconds(4.5f);
 
 		Transform spawner;
 		int spawnPosi = Random.Range (0,2);
@@ -34,15 +37,19 @@ public class SpawnBall : MonoBehaviour {
 		}
 
 		if(!GameObject.FindGameObjectWithTag ("Coily")){
-			newCoily = Instantiate(Coily, spawner.transform.position, Quaternion.identity) as GameObject;
+			GameObject newCoily = Instantiate(Coily, spawner.transform.position, Quaternion.identity) as GameObject;
 		}
-
-//		yield return new WaitForSeconds(0.2f);
-//		newCoily.transform.Translate (Vector2.down * 0.355f);
 	}
 
+	void reSpawnBall(){
+		if(Ball.gameObject == null){
+			float repeatRate = Random.Range (2.0f, 4.5f);
+			InvokeRepeating ("InstantBall", 1.5f, repeatRate);
+		}
+	}
 
 	void InstantBall(){
+
 		int spawnRate = Random.Range (0, 10);
 		int spawnPosi = Random.Range (0, 2);
 
@@ -54,7 +61,7 @@ public class SpawnBall : MonoBehaviour {
 			spawner = SpawnerL;
 		}
 
-		if (spawnRate < 8) {
+		if (spawnRate < 8) { //8
 			Ball = Instantiate (RedBall, spawner.transform.position, Quaternion.identity);
 		} else {
 			Ball = Instantiate (GreenBall, spawner.transform.position, Quaternion.identity);

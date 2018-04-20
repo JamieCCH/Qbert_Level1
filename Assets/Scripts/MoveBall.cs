@@ -12,20 +12,20 @@ public class MoveBall : MonoBehaviour {
 	string animStateName;
 	AudioSource JumpAud;
 
-	bool canMove;
+//	bool canMove;
 
 
 	// Use this for initialization
 	void Start () {
 		JumpAud = this.GetComponent<AudioSource>();
-		canMove = true;
+//		canMove = true;
 		Invoke ("checkDir", 0.5f);
 		animStateName = this.gameObject.tag;
 		JumpAud.Play ();
 	}
 		
 	void checkDir(){
-		if (canMove) {
+//		if (canMove) {
 			int moveDir = Random.Range (0, 2);
 
 			switch (moveDir) {
@@ -36,15 +36,15 @@ public class MoveBall : MonoBehaviour {
 				StartCoroutine (startMoveLeft ());
 				break;
 			}
-		}else{
-			Time.timeScale = 0;
-		}
+//		}else{
+//			Time.timeScale = 0;
+//		}
 	}
 
 
 	IEnumerator startMoveRight(){
 		
-		if (canMove) {
+//		if (canMove) {
 			yield return new WaitForSeconds (0.5f);
 
 			nextX = this.transform.position.x + cubeWidth;
@@ -52,11 +52,11 @@ public class MoveBall : MonoBehaviour {
 
 			StartCoroutine (keepDown ());
 			this.GetComponent<Animator> ().Play (animStateName, 0, 0.01f);
-		}
+//		}
 	}
 
 	IEnumerator startMoveLeft(){
-		if (canMove) {
+//		if (canMove) {
 			yield return new WaitForSeconds (0.5f);
 	
 			nextX = transform.position.x - cubeWidth;
@@ -64,7 +64,7 @@ public class MoveBall : MonoBehaviour {
 
 			StartCoroutine (keepDown ());
 			this.GetComponent<Animator> ().Play (animStateName, 0, 0.01f);
-		}
+//		}
 	}
 
 	IEnumerator keepDown(){

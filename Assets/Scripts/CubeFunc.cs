@@ -28,8 +28,10 @@ public class CubeFunc : MonoBehaviour {
 		if (other.gameObject.tag == "Player") 
 		{
 			aud.Play ();
+
 			anim.speed = 1;
 			anim.SetBool ("isHit", true);
+
 
 			Qbert.GetComponent <Animator>().SetBool ("isUpL", false);
 			Qbert.GetComponent <Animator>().SetBool ("isUpR", false);

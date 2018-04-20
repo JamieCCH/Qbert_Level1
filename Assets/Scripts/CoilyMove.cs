@@ -12,12 +12,14 @@ public class CoilyMove : MonoBehaviour {
 	bool isDown = true;
 	bool isRight;
 	bool canMove = true;
+	bool QBertOnElevator = true;
 
 	int downCount;
 	Animator coilyAnim;
 	GameObject Qbert;
-	AudioSource[] coilySounds;
+	GameObject manager;
 
+	AudioSource[] coilySounds;
 
 	void Start () {
 		coilySounds = this.GetComponents <AudioSource>();
@@ -26,6 +28,8 @@ public class CoilyMove : MonoBehaviour {
 		transform.Translate (Vector2.down * 0.37f);
 		coilySounds[1].Play();
 		InvokeRepeating ("moveDown", 0.5f, 0.8f);
+		QBertOnElevator = Qbert.GetComponent<QBertScript> ().onElevator;
+		manager = GameObject.Find ("Manager");
 	}
 
 	void moveDown(){
@@ -46,6 +50,7 @@ public class CoilyMove : MonoBehaviour {
 	}
 
 	IEnumerator moveX(string str){
+
 		if(isBall)
 			yield return new WaitForSeconds(0.5f);
 		
@@ -97,14 +102,23 @@ public class CoilyMove : MonoBehaviour {
 			CancelInvoke ("moveDown");
 			StartCoroutine (chasesQBert());
 		}
+
+//		Debug.Log (downCount);
 	}
 		
 
 	IEnumerator chasesQBert(){
 
+		QBertOnElevator = Qbert.GetComponent<QBertScript> ().onElevator;
+
 		checkDirection ();
 
-		yield return new WaitForSeconds(0.5f);
+		if(QBertOnElevator){
+			yield return new WaitForSeconds(1.9f);
+		}else{
+			yield return new WaitForSeconds(0.5f);
+		}
+
 		if(canMove)
 			startChase ();
 			
@@ -143,6 +157,7 @@ public class CoilyMove : MonoBehaviour {
 	}
 
 	void startChase(){
+
 		if (!isDown && !isRight) {
 			StartCoroutine (moveUp ("left"));
 			coilyAnim.Play ("CoilyUpLeft", 0, 0);
@@ -171,7 +186,6 @@ public class CoilyMove : MonoBehaviour {
 		coilySounds [0].Play ();
 		transform.position = new Vector3 (transform.position.x, nextY, 0);
 		StartCoroutine (moveX (str));
-
 	}
 
 //	void OnCollisionEnter2D (Collision2D c) 
@@ -179,13 +193,34 @@ public class CoilyMove : MonoBehaviour {
 	{
 		if (c.gameObject.tag == "CoilyDrop" && !isBall)
 		{
-//			Debug.Log ("coily drop");
 			coilySounds[2].Play();
 			this.transform.Translate (Vector2.down * 1.4f);
 			canMove = false;
+
+			GameObject[] Reds;
+			Reds = GameObject.FindGameObjectsWithTag("RedBall");
+			for(var i = 0 ; i < Reds.Length ; i ++){
+				Destroy (Reds[i], 0.05f);
+			}
+
+			manager.GetComponent<SpawnBall> ().StopAllCoroutines ();
+			manager.GetComponent<SpawnBall> ().enabled = false;
+			manager.gameObject.SetActive (false);
+			manager.GetComponent<SpawnBall>().CancelInvoke("InstantBall");
+		
+			Invoke("reSpawnBalls", 2f);
+
 			this.GetComponent<SpriteRenderer>().sortingLayerName = "default";
-			Destroy (this.gameObject,1.2f);
+	
+//			this.gameObject.SetActive (false);
 		}
 	}
 
+	void reSpawnBalls(){
+		Debug.Log ("respawn");
+		manager.gameObject.SetActive (true);
+		manager.GetComponent<SpawnBall> ().enabled = true;
+		manager.GetComponent<SpawnBall> ().Invoke ("reSpawnBall",1);
+		Destroy (this.gameObject, 0.5f);
+	}
 }
