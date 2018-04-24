@@ -12,10 +12,10 @@ public class SpawnBall : MonoBehaviour {
 	public Transform SpawnerL;
 
 	GameObject Ball;
-//	GameObject newCoily;
+
 
 	void Awake(){
-		float repeatRate = Random.Range (2.5f, 5.5f);
+		float repeatRate = Random.Range (2.5f, 3.5f);
 		InvokeRepeating ("InstantBall", 1.5f, repeatRate);
 	}
 
@@ -37,13 +37,13 @@ public class SpawnBall : MonoBehaviour {
 		}
 
 		if(!GameObject.FindGameObjectWithTag ("Coily")){
-			GameObject newCoily = Instantiate(Coily, spawner.transform.position, Quaternion.identity) as GameObject;
+			var newCoily = Instantiate(Coily, spawner.transform.position, Quaternion.identity);
 		}
 	}
 
 	void reSpawnBall(){
 		if(Ball.gameObject == null){
-			float repeatRate = Random.Range (2.0f, 4.5f);
+			float repeatRate = Random.Range (2.5f, 3.5f);
 			InvokeRepeating ("InstantBall", 1.5f, repeatRate);
 		}
 	}

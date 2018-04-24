@@ -12,20 +12,33 @@ public class MoveBall : MonoBehaviour {
 	string animStateName;
 	AudioSource JumpAud;
 
-//	bool canMove;
+	bool canMove = true;
+	bool isFrozen;
+
+	GameObject Qbert;
 
 
-	// Use this for initialization
 	void Start () {
 		JumpAud = this.GetComponent<AudioSource>();
-//		canMove = true;
 		Invoke ("checkDir", 0.5f);
 		animStateName = this.gameObject.tag;
 		JumpAud.Play ();
+		Qbert = GameObject.FindGameObjectWithTag ("Player");
+	}
+		
+
+	void Update(){
+		var QbertStatus = Qbert.GetComponent <QBertScript> ();
+		isFrozen = QbertStatus.isGetGreen;
+
+		if(isFrozen){
+			canMove = false;
+		}else{
+			canMove = true;
+		}
 	}
 		
 	void checkDir(){
-//		if (canMove) {
 			int moveDir = Random.Range (0, 2);
 
 			switch (moveDir) {
@@ -36,38 +49,51 @@ public class MoveBall : MonoBehaviour {
 				StartCoroutine (startMoveLeft ());
 				break;
 			}
-//		}else{
-//			Time.timeScale = 0;
-//		}
 	}
 
 
 	IEnumerator startMoveRight(){
 		
-//		if (canMove) {
-			yield return new WaitForSeconds (0.5f);
+		while (!canMove)
+		{
+			yield return null;
+		}
 
-			nextX = this.transform.position.x + cubeWidth;
-			this.transform.position = new Vector3 (nextX, this.transform.position.y, 0);
+		yield return new WaitForSeconds (0.5f);
 
-			StartCoroutine (keepDown ());
-			this.GetComponent<Animator> ().Play (animStateName, 0, 0.01f);
-//		}
+		nextX = this.transform.position.x + cubeWidth;
+		this.transform.position = new Vector3 (nextX, this.transform.position.y, 0);
+
+		StartCoroutine (keepDown ());
+		this.GetComponent<Animator> ().Play (animStateName, 0, 0.01f);
+
+
 	}
 
 	IEnumerator startMoveLeft(){
-//		if (canMove) {
-			yield return new WaitForSeconds (0.5f);
-	
-			nextX = transform.position.x - cubeWidth;
-			this.transform.position = new Vector3 (nextX, this.transform.position.y, 0);
 
-			StartCoroutine (keepDown ());
-			this.GetComponent<Animator> ().Play (animStateName, 0, 0.01f);
-//		}
+		while (!canMove)
+		{
+			yield return null;
+		}
+
+		yield return new WaitForSeconds (0.5f);
+
+		nextX = transform.position.x - cubeWidth;
+		this.transform.position = new Vector3 (nextX, this.transform.position.y, 0);
+
+		StartCoroutine (keepDown ());
+		this.GetComponent<Animator> ().Play (animStateName, 0, 0.01f);
+
 	}
 
 	IEnumerator keepDown(){
+		
+		while (!canMove)
+		{
+			yield return null;
+		}
+
 		yield return new WaitForSeconds(0.15f);
 		nextY = transform.position.y - cubeHeight;
 		this.transform.position = new Vector3 (this.transform.position.x, nextY, 0);

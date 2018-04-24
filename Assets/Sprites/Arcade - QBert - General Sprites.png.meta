@@ -46,6 +46,7 @@ TextureImporter:
     21300078: Coily_BR_02
     21300080: Coily_BL_01
     21300082: Coily_BL_02
+    21300084: Cube_Pink
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -735,6 +736,20 @@ TextureImporter:
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cube_Pink
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 192
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

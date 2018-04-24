@@ -6,21 +6,17 @@ using UnityEngine.UI;
 public class CubeFunc : MonoBehaviour {
 
 	AudioSource aud;
-	Animator anim;
 	GameObject Qbert;
+	bool isCubeYellow = false;
 
+	[SerializeField] Sprite YelloCube;
+	SpriteRenderer spriteRender;
 
 	void Start () {
+		spriteRender = gameObject.GetComponent <SpriteRenderer> ();
+
 		aud = this.GetComponent<AudioSource>();
-		anim = GetComponent<Animator>();
-		anim.SetBool ("isHit", false);
-		anim.speed = 0;
 		Qbert = GameObject.FindGameObjectWithTag ("Player");
-
-	}
-
-	void Update(){
-		
 	}
 
 	void OnCollisionEnter2D (Collision2D other) 
@@ -29,17 +25,20 @@ public class CubeFunc : MonoBehaviour {
 		{
 			aud.Play ();
 
-			anim.speed = 1;
-			anim.SetBool ("isHit", true);
-
+			if(!isCubeYellow){
+				var qbertPlayer = Qbert.GetComponent <QBertScript> ();
+				qbertPlayer.setScore (25);
+				qbertPlayer.IncrementNumberOfCubesTurnedToYellow ();
+				spriteRender.sprite = YelloCube;
+				isCubeYellow = true;
+			}
 
 			Qbert.GetComponent <Animator>().SetBool ("isUpL", false);
 			Qbert.GetComponent <Animator>().SetBool ("isUpR", false);
 			Qbert.GetComponent <Animator>().SetBool ("isDownL", false);
 			Qbert.GetComponent <Animator>().SetBool ("isDownR", false);
 		}
-
-
+			
 	}
 		
 

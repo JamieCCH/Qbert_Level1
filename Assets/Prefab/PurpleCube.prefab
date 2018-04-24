@@ -21,16 +21,16 @@ GameObject:
   - component: {fileID: 4745199569505500}
   - component: {fileID: 212232940330997354}
   - component: {fileID: 60582171262153030}
-  - component: {fileID: 95148280992848854}
   - component: {fileID: 114135057119373398}
   - component: {fileID: 82979792920535738}
-  m_Layer: 10
+  - component: {fileID: 95386544592367336}
+  m_Layer: 0
   m_Name: PurpleCube
   m_TagString: Cube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4745199569505500
 Transform:
   m_ObjectHideFlags: 1
@@ -152,16 +152,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!95 &95148280992848854
+--- !u!95 &95386544592367336
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1658429914821332}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f1aecf2213ea54cb891555e01f5059ad, type: 2}
+  m_Controller: {fileID: 9100000, guid: d3cbcc16746ed4b05a7079fef8a3486c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 401b10a1d69b945b9bde22aad66ddb9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  YelloCube: {fileID: 21300064, guid: f49c9c944079b41dcbebdb659e73679d, type: 3}
 --- !u!212 &212232940330997354
 SpriteRenderer:
   m_ObjectHideFlags: 1
