@@ -10,7 +10,7 @@ public class QBertScript : MonoBehaviour {
 	[SerializeField] GameObject LosePanel;
 	GameObject swearWords;
 	GameObject[] QbertIcons;
-//	GameObject pauseMenu;
+	GameObject manager;
 	GameObject[] cube;
 	GameObject[] Reds;
 
@@ -23,6 +23,7 @@ public class QBertScript : MonoBehaviour {
 
 	Vector3 QbertSpawner;
 
+	float keyCooldown = 0.375f;
 	float cubeWidth = 0.15f;
 	float cubeHeight = 0.24f;
 	float nextX;
@@ -45,6 +46,7 @@ public class QBertScript : MonoBehaviour {
 	int numberOfCubesYellow = 0;
 
 
+
 	public void setScore(int scoreAdd){
 
 		score += scoreAdd;
@@ -63,8 +65,6 @@ public class QBertScript : MonoBehaviour {
 	}
 
 	void gameOver(bool isWin){
-
-		var manager = GameObject.Find ("Manager");
 		manager.GetComponent<SpawnBall> ().StopAllCoroutines ();
 		manager.GetComponent<SpawnBall> ().enabled = false;
 		manager.gameObject.SetActive (false);
@@ -113,6 +113,7 @@ public class QBertScript : MonoBehaviour {
 		GameObject textObj = GameObject.Find ("Score");
 		scoreText = textObj.GetComponent<Text>();
 		cube = GameObject.FindGameObjectsWithTag ("Cube");
+		manager = GameObject.Find ("Manager");
 	}
 
 	void OnCollisionEnter2D (Collision2D other) 
@@ -131,9 +132,12 @@ public class QBertScript : MonoBehaviour {
 				swearWords.SetActive (true);
 
 				StartCoroutine (pauseGame (1.0f));
-				destroyAll ();
+				manager.GetComponent<SpawnBall> ().StopAllCoroutines ();
+				manager.GetComponent<SpawnBall>().CancelInvoke("InstantBall");
+
+//				destroyAll ();
 				this.enabled = false;
-				StartCoroutine ("QbertDeath", 1.5f);
+				StartCoroutine ("QbertDeath", 0.5f);
 			}
 		}
 
@@ -177,91 +181,6 @@ public class QBertScript : MonoBehaviour {
 		}
 	}
 
-	IEnumerator pauseGame(float pauseTime){ 
-
-		Time.timeScale = 0;
-		float pauseEndTime = Time.realtimeSinceStartup + pauseTime;
-		while (Time.realtimeSinceStartup < pauseEndTime)
-		{
-			yield return 0;
-		}
-		Time.timeScale = 1;
-	}
-		
-	void ResetCooldown(){
-		cooldown = false;
-		enableKey = true;
-	}
-		 
-
-	void Update() 
-	{	
-		if(this.GetComponent <BoxCollider2D>().enabled == !enabled || onElevator || Time.timeScale == 0){
-			enableKey = false;
-		}else{
-			enableKey = true;
-		}
-
-		if (enableKey  && numberOfCubesYellow < 28) {
-			if (Input.GetKeyDown (KeyCode.Q) || Input.GetKeyDown (KeyCode.Keypad7)) { //move topf left
-				enableKey = false;
-				if (!cooldown) {
-					anim.SetBool ("isUpL", true);
-					nextY = transform.position.y + cubeHeight;
-					this.GetComponent <BoxCollider2D> ().enabled = !enabled;
-					transform.position = new Vector3 (transform.position.x, nextY, 0);
-					StartCoroutine (moveQbertUp ("left"));
-
-					Invoke ("ResetCooldown", 0.5f);
-					cooldown = true;
-				}
-			}	
-
-			if (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.Keypad9)) { //move top right
-				enableKey = false;
-				if (!cooldown) {
-					anim.SetBool ("isUpR", true);
-					nextY = transform.position.y + cubeHeight;
-					this.GetComponent <BoxCollider2D> ().enabled = !enabled;
-					transform.position = new Vector3 (transform.position.x, nextY, 0);
-					StartCoroutine (moveQbertUp ("right"));
-
-					Invoke ("ResetCooldown", 0.5f);
-					cooldown = true;
-				}
-			}
-
-			if (Input.GetKeyDown (KeyCode.A) || Input.GetKeyDown (KeyCode.Keypad1)) {  //move bottom left
-				enableKey = false;
-				if (!cooldown) {
-					anim.SetBool ("isDownL", true);
-					this.GetComponent <BoxCollider2D> ().enabled = !enabled;
-					nextX = transform.position.x - cubeWidth;
-					transform.position = new Vector3 (nextX, transform.position.y, 0);
-					StartCoroutine (moveQbertDown ());
-
-					Invoke ("ResetCooldown", 0.5f);
-					cooldown = true;
-				}
-			}
-
-			if (Input.GetKeyDown (KeyCode.S) || Input.GetKeyDown (KeyCode.Keypad3)) { //move bottom right
-				enableKey = false;
-				if (!cooldown) {
-					anim.SetBool ("isDownR", true);
-					this.GetComponent <BoxCollider2D> ().enabled = !enabled;
-					nextX = transform.position.x + cubeWidth;
-					transform.position = new Vector3 (nextX, transform.position.y, 0);
-					StartCoroutine (moveQbertDown ());
-
-					Invoke ("ResetCooldown", 0.5f);
-					cooldown = true;
-
-				}
-			}
-		}
-	}
-		
 	IEnumerator QbertDeath(){
 
 		destroyAll ();
@@ -271,6 +190,7 @@ public class QBertScript : MonoBehaviour {
 		yield return new WaitForSeconds(0.8f);
 
 		this.gameObject.SetActive (false);
+
 		if(lifeShow>0){
 			Destroy (QbertIcons[lifeShow-1]);
 			lifeShow--;
@@ -287,7 +207,7 @@ public class QBertScript : MonoBehaviour {
 		this.enabled = true;
 		this.gameObject.SetActive (true);
 		swearWords.SetActive (false);
-
+		manager.GetComponent<SpawnBall> ().reSpawnBall ();
 		if(isFall){
 			this.GetComponent <BoxCollider2D>().enabled = enabled;
 			this.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
@@ -296,10 +216,102 @@ public class QBertScript : MonoBehaviour {
 		}
 	}
 
+
+	IEnumerator pauseGame(float pauseTime){ 
+
+		Time.timeScale = 0;
+		float pauseEndTime = Time.realtimeSinceStartup + pauseTime;
+		while (Time.realtimeSinceStartup < pauseEndTime)
+		{
+			yield return 0;
+		}
+		Time.timeScale = 1;
+	}
+		
+	void ResetCooldown(){
+		cooldown = false;
+		enableKey = true;
+	}
+
+	IEnumerator slowDown(){
+		yield return new WaitForSeconds(5.5f);
+	}
+		 
+
+	void Update() 
+	{	
+		if(this.GetComponent <BoxCollider2D>().enabled == !enabled || onElevator || Time.timeScale == 0){
+			enableKey = false;
+		}else{
+			enableKey = true;
+		}
+
+		if (enableKey  && numberOfCubesYellow < 28) {
+			if (Input.GetKeyDown (KeyCode.Q) || Input.GetKeyDown (KeyCode.Keypad7)) { //move topf left
+				enableKey = false;
+				if (!cooldown) {
+					
+					anim.SetBool ("isUpL", true);
+					nextY = transform.position.y + cubeHeight;
+					this.GetComponent <BoxCollider2D> ().enabled = !enabled;
+					transform.position = new Vector3 (transform.position.x, nextY, 0);
+					StartCoroutine (moveQbertUp ("left"));
+
+					Invoke ("ResetCooldown", keyCooldown);
+					cooldown = true;
+				}
+			}	
+
+			if (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.Keypad9)) { //move top right
+				enableKey = false;
+				if (!cooldown) {
+					
+					anim.SetBool ("isUpR", true);
+					nextY = transform.position.y + cubeHeight;
+					this.GetComponent <BoxCollider2D> ().enabled = !enabled;
+					transform.position = new Vector3 (transform.position.x, nextY, 0);
+					StartCoroutine (moveQbertUp ("right"));
+
+					Invoke ("ResetCooldown", keyCooldown);
+					cooldown = true;
+				}
+			}
+
+			if (Input.GetKeyDown (KeyCode.A) || Input.GetKeyDown (KeyCode.Keypad1)) {  //move bottom left
+				enableKey = false;
+				if (!cooldown) {
+					
+					anim.SetBool ("isDownL", true);
+					nextX = transform.position.x - cubeWidth;
+					this.GetComponent <BoxCollider2D> ().enabled = !enabled;
+					transform.position = new Vector3 (nextX, this.transform.position.y, 0);
+					StartCoroutine (moveQbertDown ());
+
+					Invoke ("ResetCooldown", keyCooldown);
+					cooldown = true;
+				}
+			}
+
+			if (Input.GetKeyDown (KeyCode.S) || Input.GetKeyDown (KeyCode.Keypad3)) { //move bottom right
+				enableKey = false;
+				if (!cooldown) {
+					anim.SetBool ("isDownR", true);
+					nextX = transform.position.x + cubeWidth;
+					this.GetComponent <BoxCollider2D> ().enabled = !enabled;
+					transform.position = new Vector3 (nextX, this.transform.position.y, 0);
+					StartCoroutine (moveQbertDown ());
+
+					Invoke ("ResetCooldown", keyCooldown);
+					cooldown = true;
+
+				}
+			}
+		}
+	}
+
 	IEnumerator moveQbertDown(){
 
-		yield return new WaitForSeconds(0.05f);
-
+		yield return new WaitForSeconds(0.0959f);
 		nextY = transform.position.y - cubeHeight;
 		transform.position = new Vector3 (nextX, nextY, 0);
 		this.GetComponent <BoxCollider2D>().enabled = enabled;
@@ -307,7 +319,7 @@ public class QBertScript : MonoBehaviour {
 
 	IEnumerator moveQbertUp(string str){
 
-		yield return new WaitForSeconds(0.05f);
+		yield return new WaitForSeconds(0.0959f);
 
 		switch (str){
 		case "left":
@@ -320,6 +332,9 @@ public class QBertScript : MonoBehaviour {
 		this.GetComponent <BoxCollider2D>().enabled = enabled;
 		transform.position = new Vector3 (nextX, nextY, 0);
 	}
+		
+
+
 
 
 

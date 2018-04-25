@@ -59,7 +59,7 @@ public class MoveBall : MonoBehaviour {
 			yield return null;
 		}
 
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (0.4f);
 
 		nextX = this.transform.position.x + cubeWidth;
 		this.transform.position = new Vector3 (nextX, this.transform.position.y, 0);
@@ -77,7 +77,7 @@ public class MoveBall : MonoBehaviour {
 			yield return null;
 		}
 
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (0.4f);
 
 		nextX = transform.position.x - cubeWidth;
 		this.transform.position = new Vector3 (nextX, this.transform.position.y, 0);

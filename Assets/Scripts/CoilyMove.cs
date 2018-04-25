@@ -34,7 +34,7 @@ public class CoilyMove : MonoBehaviour {
 	}
 
 	void Update(){
-
+		Qbert = GameObject.FindGameObjectWithTag ("Player");
 		var QbertStatus = Qbert.GetComponent <QBertScript> ();
 		isFrozen = QbertStatus.isGetGreen;
 
@@ -93,7 +93,7 @@ public class CoilyMove : MonoBehaviour {
 		}
 
 		if(isBall){
-			yield return new WaitForSeconds(0.5f);
+			yield return new WaitForSeconds(0.3f);
 			coilySounds [1].Play ();
 			coilyAnim.Play ("CoilyBall", 0, 0.01f);
 		}
@@ -102,8 +102,7 @@ public class CoilyMove : MonoBehaviour {
 			yield return new WaitForSeconds(0.05f);
 		
 		if(isDown&&!isBall)
-			yield return new WaitForSeconds(0.4f);
-
+			yield return new WaitForSeconds(0.35f);
 
 		switch (str) {
 		case "left":
@@ -253,7 +252,7 @@ public class CoilyMove : MonoBehaviour {
 			yield return null;
 		}
 
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (0.35f);
 		nextY = transform.position.y + cubeHeight;
 		coilySounds [0].Play ();
 		transform.position = new Vector3 (transform.position.x, nextY, 0);
@@ -287,6 +286,7 @@ public class CoilyMove : MonoBehaviour {
 			Invoke("reSpawnBalls", 2f);
 
 			this.GetComponent<SpriteRenderer>().sortingLayerName = "default";
+
 		}
 	}
 
@@ -298,11 +298,12 @@ public class CoilyMove : MonoBehaviour {
 	}
 
 	void reSpawnBalls(){
-		
+		Destroy (this.gameObject);
 		manager.gameObject.SetActive (true);
 		manager.GetComponent<SpawnBall> ().enabled = true;
 		manager.GetComponent<SpawnBall> ().reSpawnBall ();
 //		manager.GetComponent<SpawnBall> ().Invoke ("reSpawnBall",1);
-		Destroy (this.gameObject, 0.5f);
+
+
 	}
 }
