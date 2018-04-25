@@ -13,6 +13,7 @@ public class CoilyMove : MonoBehaviour {
 	bool isRight;
 	bool canMove = true;
 	bool QBertOnElevator = true;
+	bool isFrozen;
 
 	int downCount;
 	Animator coilyAnim;
@@ -23,7 +24,7 @@ public class CoilyMove : MonoBehaviour {
 
 	void Start () {
 		coilySounds = this.GetComponents <AudioSource>();
-		Qbert = GameObject.Find ("QBert");
+		Qbert = GameObject.FindGameObjectWithTag ("Player");
 		coilyAnim = this.GetComponent <Animator> ();
 		transform.Translate (Vector2.down * 0.37f);
 		coilySounds[1].Play();
@@ -34,10 +35,37 @@ public class CoilyMove : MonoBehaviour {
 
 	void Update(){
 
-		if(Input.GetKeyDown (KeyCode.Z)){
+		var QbertStatus = Qbert.GetComponent <QBertScript> ();
+		isFrozen = QbertStatus.isGetGreen;
+
+		if(isFrozen){
 			canMove = false;
-		}else if(Input.GetKeyDown (KeyCode.C)){
+		}else{
 			canMove = true;
+		}
+
+//		if(Input.GetKeyDown (KeyCode.Z)){
+//			canMove = false;
+//		}else if(Input.GetKeyDown (KeyCode.C)){
+//			canMove = true;
+//		}
+
+		if(!isBall && this.transform.position.y <= -0.88){
+			isDown = false;
+		}
+
+		if(isBall && !canMove){
+			CancelInvoke ("moveDown");
+		}
+
+		if(isBall && !canMove){
+			InvokeRepeating ("moveDown", 0.5f, 0.8f);
+		}
+
+		if(isBall && this.transform.position.y <= -0.88){
+			isBall = false;
+			CancelInvoke ("moveDown");
+			StartCoroutine (chasesQBert());
 		}
 	}
 
@@ -46,7 +74,6 @@ public class CoilyMove : MonoBehaviour {
 	}
 
 	void checkDir(){
-		
 		int moveDir = Random.Range (0, 2);
 		switch (moveDir) {
 		case(0):
@@ -56,7 +83,6 @@ public class CoilyMove : MonoBehaviour {
 			StartCoroutine (moveX ("right"));
 			break;
 		}
-
 	}
 
 	IEnumerator moveX(string str){
@@ -66,9 +92,12 @@ public class CoilyMove : MonoBehaviour {
 			yield return null;
 		}
 
-		if(isBall)
+		if(isBall){
 			yield return new WaitForSeconds(0.5f);
-		
+			coilySounds [1].Play ();
+			coilyAnim.Play ("CoilyBall", 0, 0.01f);
+		}
+			
 		if(!isDown){}
 			yield return new WaitForSeconds(0.05f);
 		
@@ -86,17 +115,18 @@ public class CoilyMove : MonoBehaviour {
 		}		
 		transform.position = new Vector3 (nextX, transform.position.y, 0);
 
-		if (!isDown && canMove) {
+//		if (!isDown && canMove) {
+		if (!isDown) {
 			StartCoroutine (chasesQBert ());
 		} else {
 			StartCoroutine (keepDown ());
 		}
-
-		if (isBall && canMove) {
-			coilySounds [1].Play ();
-			coilyAnim.Play ("CoilyBall", 0, 0.01f);
-		}
-
+			
+//		if (isBall && canMove) {
+//		if (isBall) {
+//			coilySounds [1].Play ();
+//			coilyAnim.Play ("CoilyBall", 0, 0.01f);
+//		}
 	}
 
 
@@ -111,22 +141,19 @@ public class CoilyMove : MonoBehaviour {
 
 		yield return new WaitForSeconds(0.15f);
 
-		if(!isBall)
+		if(!isBall){
 			coilySounds[0].Play();
-
+			StartCoroutine (chasesQBert());
+		}
+			
 		nextY = transform.position.y - cubeHeight;
 		transform.position = new Vector3 (transform.position.x, nextY, 0);
 
-		if(isBall && !canMove){
-			CancelInvoke ("moveDown");
-			canMove = true;
-		}
-
-		if(isBall && this.transform.position.y <= -0.88){
-			isBall = false;
-			CancelInvoke ("moveDown");
-			StartCoroutine (chasesQBert());
-		}
+//		if(isBall && this.transform.position.y <= -0.88){
+//			isBall = false;
+//			CancelInvoke ("moveDown");
+//			StartCoroutine (chasesQBert());
+//		}
 
 	}
 		
@@ -148,8 +175,9 @@ public class CoilyMove : MonoBehaviour {
 			yield return new WaitForSeconds(0.5f);
 		}
 
-		if(canMove)
-			startChase ();
+//		if(canMove)
+//		startChase ();
+		StartCoroutine (startChase ());
 			
 	}
 
@@ -185,9 +213,16 @@ public class CoilyMove : MonoBehaviour {
 		}
 	}
 
-	void startChase(){
+//	void startChase(){
+	IEnumerator startChase(){
 
-		if (canMove && !isBall) {
+		while (!canMove)
+		{
+			yield return null;
+		}
+
+//		if (canMove && !isBall) {
+		if (!isBall){
 			if (!isDown && !isRight) {
 				StartCoroutine (moveUp ("left"));
 				coilyAnim.Play ("CoilyUpLeft", 0, 0);
@@ -209,7 +244,6 @@ public class CoilyMove : MonoBehaviour {
 				coilyAnim.Play ("CoilyLeft", 0, 0);
 			}
 		}
-
 	}
 
 	IEnumerator moveUp(string str){
@@ -257,16 +291,18 @@ public class CoilyMove : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D c){
+		QBertOnElevator = Qbert.GetComponent<QBertScript> ().onElevator;
 		if(c.gameObject.tag == "Player" && !QBertOnElevator){
 			coilySounds[3].Play();
 		}
 	}
 
 	void reSpawnBalls(){
-		Debug.Log ("respawn");
+		
 		manager.gameObject.SetActive (true);
 		manager.GetComponent<SpawnBall> ().enabled = true;
-		manager.GetComponent<SpawnBall> ().Invoke ("reSpawnBall",1);
+		manager.GetComponent<SpawnBall> ().reSpawnBall ();
+//		manager.GetComponent<SpawnBall> ().Invoke ("reSpawnBall",1);
 		Destroy (this.gameObject, 0.5f);
 	}
 }

@@ -41,10 +41,13 @@ public class SpawnBall : MonoBehaviour {
 		}
 	}
 
-	void reSpawnBall(){
-		if(Ball.gameObject == null){
+	public void reSpawnBall(){
+
+		var balls = GameObject.FindGameObjectsWithTag ("RedBall");
+
+		if(balls.Length<=0){
 			float repeatRate = Random.Range (2.5f, 3.5f);
-			InvokeRepeating ("InstantBall", 1.5f, repeatRate);
+			InvokeRepeating ("InstantBall", 2.0f, repeatRate);
 		}
 	}
 

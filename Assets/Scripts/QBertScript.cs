@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class QBertScript : MonoBehaviour {
 
 	[SerializeField] GameObject BonusPanel;
+	[SerializeField] GameObject LosePanel;
 	GameObject swearWords;
 	GameObject[] QbertIcons;
 //	GameObject pauseMenu;
@@ -57,7 +58,21 @@ public class QBertScript : MonoBehaviour {
 		if (numberOfCubesYellow >= 28)
 		{
 			setScore (1000);
+			gameOver(true);
+		}
+	}
 
+	void gameOver(bool isWin){
+
+		var manager = GameObject.Find ("Manager");
+		manager.GetComponent<SpawnBall> ().StopAllCoroutines ();
+		manager.GetComponent<SpawnBall> ().enabled = false;
+		manager.gameObject.SetActive (false);
+		manager.GetComponent<SpawnBall>().CancelInvoke("InstantBall");
+
+		if(isWin)
+		{
+			winSound.Play ();
 			var elevator = GameObject.FindGameObjectsWithTag ("Elevator");
 			if(elevator.Length>0){
 				setScore (100*elevator.Length);
@@ -66,25 +81,22 @@ public class QBertScript : MonoBehaviour {
 				bonusText = bonusObj.GetComponent <Text> ();
 				bonusText.text = ""+ 100 * elevator.Length;
 			}
-
 			for(var i =0; i<cube.Length; i++){
 				cube [i].GetComponent <Animator> ().enabled = true;
 			}
-			enableKey = false;
-			winSound.Play ();
-			StartCoroutine(freezeEnemy(1.0f));
-			destroyAll ();
-			StartCoroutine ("BackToMenu");
+
+		}else{
+			LosePanel.SetActive (true);
 		}
+
+		enableKey = false;
+		StartCoroutine(freezeEnemy(1.0f));
+		destroyAll ();
+		StartCoroutine ("BackToMenu");
 	}
 
 	IEnumerator BackToMenu(){
-		yield return new WaitForSeconds(2.0f);
-		for(var i =0; i<cube.Length; i++){
-			cube [i].GetComponent <Animator> ().enabled = false;
-		}
-
-		yield return new WaitForSeconds(1.0f);
+		yield return new WaitForSeconds(3.0f);
 		SceneManager.LoadScene ("Menu");
 	}
 
@@ -101,11 +113,6 @@ public class QBertScript : MonoBehaviour {
 		GameObject textObj = GameObject.Find ("Score");
 		scoreText = textObj.GetComponent<Text>();
 		cube = GameObject.FindGameObjectsWithTag ("Cube");
-//		BonusPanel = GameObject.Find ("BonusPanel");
-//		BonusPanel.SetActive (false);
-
-//		pauseMenu = GameObject.Find ("EscPanel");
-//		isPause = pauseMenu.activeSelf;
 	}
 
 	void OnCollisionEnter2D (Collision2D other) 
@@ -120,24 +127,11 @@ public class QBertScript : MonoBehaviour {
 		if(other.gameObject.tag == "Coily" || other.gameObject.tag == "RedBall"){
 			if (!onElevator) {
 				
-//				Reds = GameObject.FindGameObjectsWithTag("RedBall");
-//				for(var i = 0 ; i < Reds.Length ; i ++){
-//					Destroy (Reds[i], 0.25f);
-//				}
-//
-//				GameObject Coily = GameObject.FindGameObjectWithTag ("Coily");
-//				if(Coily != null){
-//					Destroy (Coily, 0.25f);
-//				}
-
-				destroyAll ();
-
 				swearAud.Play ();
 				swearWords.SetActive (true);
 
-				StartCoroutine (pauseGame (1.0f,false));
-
-//				Destroy (other.gameObject, 0.5f);
+				StartCoroutine (pauseGame (1.0f));
+				destroyAll ();
 				this.enabled = false;
 				StartCoroutine ("QbertDeath", 1.5f);
 			}
@@ -150,11 +144,6 @@ public class QBertScript : MonoBehaviour {
 			isGetGreen = true;
 			StartCoroutine(freezeEnemy(2.5f));
 			Destroy (other.gameObject, 0.25f);
-
-//			for(var i = 0 ; i < Reds.Length ; i ++){
-//				var redBallmove = Reds[i].GetComponent <MoveBall> ();
-//				redBallmove.setFrozen (false);
-//			}
 		}
 	}
 		
@@ -188,7 +177,7 @@ public class QBertScript : MonoBehaviour {
 		}
 	}
 
-	IEnumerator pauseGame(float pauseTime, bool moveQbert){ 
+	IEnumerator pauseGame(float pauseTime){ 
 
 		Time.timeScale = 0;
 		float pauseEndTime = Time.realtimeSinceStartup + pauseTime;
@@ -272,16 +261,14 @@ public class QBertScript : MonoBehaviour {
 			}
 		}
 	}
-
-
-
+		
 	IEnumerator QbertDeath(){
 
 		destroyAll ();
 
 		life--;
 
-		yield return new WaitForSeconds(1.0f);
+		yield return new WaitForSeconds(0.8f);
 
 		this.gameObject.SetActive (false);
 		if(lifeShow>0){
@@ -291,8 +278,8 @@ public class QBertScript : MonoBehaviour {
 		}
 
 		if(life<=0){
-//			gameOver ();
-			Debug.Log ("gameover");
+			this.gameObject.SetActive (true);
+			gameOver (false);
 		}
 	}
 
